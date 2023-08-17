@@ -1,0 +1,36 @@
+{
+    "register" : {
+        "title" : "Register User Account" ,
+        "registerBtn" : "Register" , 
+        "mobile" : "Username" ,
+        "email" : "Email" ,
+        "password" : "Password" ,
+        "changeToLoginForm" : "Have an account? Login now." ,
+        "confirmPassword" : "Again Pass",
+        "actionBtn" : "Authenticating..." ,
+        "isSubmitting" :  "Registration was successful. You will be taken to the login page.",
+        "errors" : {
+            "required" : "This field is required." ,
+            "mobileError" : "Enter your username." ,
+            "emailError" : "Enter your email." ,
+            "passwordError" : "Enter your password." ,
+            "passLengthError" : "Your password must conatins atleast 5 character." , 
+            "validateConfirmPass" : "Your Password is not match."
+        }
+    } ,
+    "login" : {
+        "title" : "Login" ,
+        "loginBtn" : "login" , 
+        "mobile" : "Username" ,
+        "password" : "Password" ,
+        "forgotenPass" : "Forget your password?" ,
+        "changeToRegisterForm" : "Have not an account ? Register now." ,
+        "actionBtn" : "Authenticating..." ,
+        "isSubmitting" : "You will be taken to the dashboard." ,
+        "errors" : {
+            "required" : "This field is required." ,
+            "mobileError" : " Enter your username" ,
+            "emailError" : "Enter your email."
+        }
+    }
+}

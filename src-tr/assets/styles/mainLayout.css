@@ -1,0 +1,43 @@
+
+.main-layout .sidebar{
+    width: 20vw;
+    min-height: 100vh;
+    background-color: var( --third-teal);
+    transition: all .3s;
+}
+.main-layout .main{
+    width: 100vw;
+}
+
+.main-layout .sidebar.collapsed{
+    width: 50px;
+    transition: all .3s;
+}
+body.dark .main-layout .navbar .sidebar-toogle{
+    color: var( --third-teal);
+}
+body.dark .main-layout .navbar .sidebar-toogle:hover{
+    color: #ffffffd5;
+}
+.main-layout .navbar .sidebar-toogle{
+    font-size: 1.5rem;
+    color: var(--first-teal);
+    cursor: pointer;
+}
+.main-layout .navbar .sidebar-toogle:hover{
+    color: #000000d5;
+}
+
+
+footer.footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid var(--first-teal);
+}
+.footer p{
+    color: #989898;
+}
+.footer span{
+    color: var(--third-teal);
+}
