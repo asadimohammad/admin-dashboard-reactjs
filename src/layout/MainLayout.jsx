@@ -15,6 +15,7 @@ import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "../components/MenuItems/SideBarData";
 import SubMenu from "../components/MenuItems/SubMenu";
 import { IconContext } from "react-icons/lib";
+import { useTranslation } from "react-i18next";
 
 
 const SidebarNav = styled.nav`
@@ -36,7 +37,7 @@ const SidebarWrap = styled.div`
 const MainLayout = () => {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
-    const [collapseSidebar, setCollapseSidebar] = useState(false);
+    const {t} = useTranslation()
     return (
         <div className="main-layout wrraper d-flex ">
             <nav className={`sidebar ${sidebar ? "collapsed" : ""}`}>
@@ -45,7 +46,7 @@ const MainLayout = () => {
                     className="sidebar-logo d-flex flex-col align-center"
                 >
                     <img src={logoDash} alt="" />
-                    <h3>داشبورد مدیریت دوره ها</h3>
+                    <h3>{t('dash.title')}</h3>
                 </Link>
 
                 {/* main sub menu */}
@@ -53,7 +54,7 @@ const MainLayout = () => {
                 <IconContext.Provider value={{ color: "#fff" }}>
                     <SidebarNav>
                         <SidebarWrap>
-                            {SidebarData.map((item, index) => {
+                            {SidebarData().map((item, index) => {
                                 return <SubMenu item={item} key={index} />;
                             })}
                         </SidebarWrap>
@@ -66,7 +67,6 @@ const MainLayout = () => {
                     <span
                         className="sidebar-toogle"
                         onClick={showSidebar}
-                        // onClick={() => setCollapseSidebar(!collapseSidebar)}
                     >
                         {sidebar ? <HiMenuAlt3 /> : <HiMenuAlt2 />}
                     </span>
@@ -85,7 +85,7 @@ const MainLayout = () => {
                 <footer className="footer px-2">
                     <div className="d-flex align-center gap-3 py-2">
                         <p>
-                            @ 2023 - <span>آکادمی Wins</span>
+                            @ 2023 - <span>{t('dash.footer')}</span>
                         </p>
                     </div>
                 </footer>

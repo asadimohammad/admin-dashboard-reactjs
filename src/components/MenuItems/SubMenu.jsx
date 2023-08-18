@@ -1,8 +1,29 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// @ts-nocheck
+import React, { useEffect, useRef, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const SidebarLink = styled(Link)`
+const SidebarNavLink = styled(NavLink)`
+    display: flex;
+    color: #e1e9fc;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    list-style: none;
+    height: 60px;
+    text-decoration: none;
+    font-size: 16px;
+
+    &:hover {
+        background: #252831;
+        border-left: 4px solid #632ce4;
+        cursor: pointer;
+    }
+    &.active {
+        background: #454ab2;
+    }
+`;
+const SidebarLink = styled.div`
     display: flex;
     color: #e1e9fc;
     justify-content: space-between;
@@ -24,8 +45,8 @@ const SidebarLabel = styled.span`
     margin-right: 16px;
 `;
 
-const DropdownLink = styled(Link)`
-    background: #414757;
+const DropdownLink = styled(NavLink)`
+    background: #364263;
     height: 60px;
     padding-right: 3rem;
     display: flex;
@@ -35,31 +56,57 @@ const DropdownLink = styled(Link)`
     font-size: 16px;
 
     &:hover {
-        background: #632ce4;
+        background: #2f374c;
         cursor: pointer;
     }
 `;
 
 const SubMenu = ({ item }) => {
     const [subnav, setSubnav] = useState(false);
+    const refNav = useRef();
+    useEffect(() => {
+        const closeSubNavs = (e) => {
+            if (subnav && !e.target.contains(refNav.current)) {
+                setSubnav(false);
+            }
+        };
+        document.addEventListener("click", closeSubNavs);
+        return () => document.removeEventListener("click", closeSubNavs);
+    }, [subnav]);
 
     const showSubnav = () => setSubnav(!subnav);
 
     return (
         <>
-            <SidebarLink to={item.path} onClick={item.subNav && showSubnav}>
-                <div>
-                    {item.icon}
-                    <SidebarLabel>{item.title}</SidebarLabel>
-                </div>
-                <div>
-                    {item.subNav && subnav
-                        ? item.iconOpened
-                        : item.subNav
-                        ? item.iconClosed
-                        : null}
-                </div>
-            </SidebarLink>
+            {!item.subNav ? (
+                <SidebarNavLink to={item.path} onClick={item.subNav && showSubnav}>
+                    <div>
+                        {item.icon}
+                        <SidebarLabel ref={refNav}>{item.title}</SidebarLabel>
+                    </div>
+                    <div>
+                        {item.subNav && subnav
+                            ? item.iconOpened
+                            : item.subNav
+                            ? item.iconClosed
+                            : null}
+                    </div>
+                </SidebarNavLink>
+            ) : (
+                <SidebarLink to={item.path} onClick={item.subNav && showSubnav}>
+                    <div>
+                        {item.icon}
+                        <SidebarLabel ref={refNav}>{item.title}</SidebarLabel>
+                    </div>
+                    <div>
+                        {item.subNav && subnav
+                            ? item.iconOpened
+                            : item.subNav
+                            ? item.iconClosed
+                            : null}
+                    </div>
+                </SidebarLink>
+            )}
             {subnav &&
                 item.subNav.map((item, index) => {
                     return (

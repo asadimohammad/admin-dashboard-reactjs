@@ -69,10 +69,12 @@ body.dark .main-layout .navbar .sidebar-toogle:hover{
 .sidebar-nav .sub_nav_level_one > li a{
     color: #dadae7;
 }
-.sidebar.collapsed > nav a span{
+.sidebar.collapsed > nav a span ,
+.sidebar.collapsed > nav > div span{
     display: none;
 }
-.sidebar.collapsed > nav > div > a{
+.sidebar.collapsed > nav > div > a ,
+.sidebar.collapsed > nav > div > div{
     width : fit-content;
     padding: 15px;
 }

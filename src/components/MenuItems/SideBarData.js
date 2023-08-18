@@ -9,109 +9,113 @@ import * as RiIcons from "react-icons/ri";
 import * as PiIcons from "react-icons/pi";
 import * as MdIcons from "react-icons/md";
 import * as LuIcons from "react-icons/lu";
+import { useTranslation } from "react-i18next";
 
-export const SidebarData = [
-    // مدیریت کاربران
-    {
-        title: "مدیریت دانشجویان",
-        path: "/",
-        icon: <PiIcons.PiStudentDuotone />,
-    },
-    {
-        title: "مدیریت اساتید",
-        path: "/",
-        icon: <FaIcons.FaChalkboardTeacher />,
-    },
-    {
-        title: "دسته بندی کاربران",
-        path: "/",
-        icon: <PiIcons.PiUsersThreeDuotone />,
-    },
+export const SidebarData = () => {
+    const {t} = useTranslation()
+    const dataNav = [
+        // مدیریت کاربران
+        {
+            title: t('dash.sidebar.stuMng'),
+            path: "/sudentsList",
+            icon: <PiIcons.PiStudentDuotone />,
+        },
+        {
+            title: t('dash.sidebar.stafMng'),
+            path: "/stafList",
+            icon: <FaIcons.FaChalkboardTeacher />,
+        },
+        {
+            title: t('dash.sidebar.userCategory'),
+            path: "/usersList",
+            icon: <PiIcons.PiUsersThreeDuotone />,
+        },
 
-    //   مدیریت دوره ها
-    {
-        title: "لیست دوره ها",
-        path: "/",
-        icon: <MdIcons.MdOutlineLibraryBooks />,   
-    },
-    {
-        title: "دسته بندی دوره ها",
-        path: "/",
-        icon: <BiIcons.BiCategory />,
-    },
-    {
-        title: "مدیریت تخفیف ها",
-        path: "/",
-        icon: <MdIcons.MdOutlineDiscount />,
-    },
+        //   مدیریت دوره ها
+        {
+            title: t('dash.sidebar.coursesList'),
+            path: "/courses",
+            icon: <MdIcons.MdOutlineLibraryBooks />,
+        },
+        {
+            title: t('dash.sidebar.coursesCategory'),
+            path: "/courseCategory",
+            icon: <BiIcons.BiCategory />,
+        },
+        {
+            title: t('dash.sidebar.discounts'),
+            path: "/discounts",
+            icon: <MdIcons.MdOutlineDiscount />,
+        },
 
-    // مدیریت محتوی
-    {
-        title: "صفحات سایت",
-        path: "/",
-        icon: <SiIcons.SiPagespeedinsights />,
-        iconClosed: <RiIcons.RiArrowDownSFill />,
-        iconOpened: <RiIcons.RiArrowUpSFill />,
+        // مدیریت محتوی
+        {
+            title: t('dash.sidebar.webPages.title'),
+            icon: <SiIcons.SiPagespeedinsights />,
+            iconClosed: <RiIcons.RiArrowDownSFill />,
+            iconOpened: <RiIcons.RiArrowUpSFill />,
 
-        subNav: [
-            {
-                title: "صفحه اصلی",
-                path: "/",
-                icon: <IoIcons.IoIosPaper />,
-                cName: "sub-nav",
-            },
-            {
-                title: "صفحه دوره ها",
-                path: "/",
-                icon: <IoIcons.IoIosPaper />,
-                cName: "sub-nav",
-            },
-            {
-                title: "صفحه تماس با ما",
-                path: "/",
-                icon: <IoIcons.IoIosPaper />,
-            },
-            {
-                title: "صفحه درباره ما",
-                path: "/",
-                icon: <IoIcons.IoIosPaper />,
-            },
-        ],
-    },
+            subNav: [
+                {
+                    title: t('dash.sidebar.webPages.homePage'),
+                    path: "/edit/HomePage",
+                    icon: <IoIcons.IoIosPaper />,
+                    cName: "sub-nav",
+                },
+                {
+                    title: t('dash.sidebar.webPages.courses'),
+                    path: "/edit/courses",
+                    icon: <IoIcons.IoIosPaper />,
+                    cName: "sub-nav",
+                },
+                {
+                    title: t('dash.sidebar.webPages.contactus'),
+                    path: "/edit/contact-us",
+                    icon: <IoIcons.IoIosPaper />,
+                },
+                {
+                    title: t('dash.sidebar.webPages.aboutus'),
+                    path: "/edit/about-us",
+                    icon: <IoIcons.IoIosPaper />,
+                },
+            ],
+        },
 
-    //   وبلاگ
-    {
-        title: "وبلاگ",
-        path: "/",
-        icon: <ImIcons.ImBlog />,
-        iconClosed: <RiIcons.RiArrowDownSFill />,
-        iconOpened: <RiIcons.RiArrowUpSFill />,
+        //   وبلاگ
+        {
+            title: t('dash.sidebar.blog.title'),
+            icon: <ImIcons.ImBlog />,
+            iconClosed: <RiIcons.RiArrowDownSFill />,
+            iconOpened: <RiIcons.RiArrowUpSFill />,
 
-        subNav: [
-            {
-                title: "پست ها",
-                path: "/",
-                icon: <IoIcons.IoIosPaper />,
-                cName: "sub-nav",
-            },
-            {
-                title: "برچسب ها",
-                path: "/",
-                icon: <IoIcons.IoIosPaper />,
-                cName: "sub-nav",
-            },
-        ],
-    },
+            subNav: [
+                {
+                    title: t('dash.sidebar.blog.posts'),
+                    path: "/blog/posts",
+                    icon: <IoIcons.IoIosPaper />,
+                    cName: "sub-nav",
+                },
+                {
+                    title: t('dash.sidebar.blog.tags'),
+                    path: "/blog/tags",
+                    icon: <IoIcons.IoIosPaper />,
+                    cName: "sub-nav",
+                },
+            ],
+        },
 
-    // تنظیمات
-    {
-        title: "تنظیم دسترسی ها",
-        path: "/",
-        icon: <LuIcons.LuSettings />,
-    },
-    {
-        title: "تنظیمات داشبورد",
-        path: "/",
-        icon: <AiIcons.AiFillDashboard />,
-    },
-];
+        // تنظیمات
+        {
+            title: t('dash.sidebar.access'),
+            path: "/stting/access",
+            icon: <LuIcons.LuSettings />,
+        },
+        {
+            title: t('dash.sidebar.setting'),
+            path: "/setting",
+            icon: <AiIcons.AiFillDashboard />,
+        },
+    ];
+
+    return dataNav;
+};
