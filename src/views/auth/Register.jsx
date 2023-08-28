@@ -48,11 +48,11 @@ const Register = () => {
             <img src={avatar} alt="" />
             <h2 className="title mb-6">{t("register.title")}</h2>
 
-            <div className={`input-div one ${errors.username ? "invalid" : ""}`}>
+            <div className={`input-div one ${errors.mobile ? "invalid" : ""}`}>
                 <div className="div">
                     <input
                         type="text"
-                        {...register("username", {
+                        {...register("mobile", {
                             required: t("register.errors.required"),
                         })}
                         className="input py-2 px-6"
@@ -92,7 +92,7 @@ const Register = () => {
 
             <div
                 className={`input-div confirmPassword ${
-                    errors.username ? "invalid" : ""
+                    errors.mobile ? "invalid" : ""
                 }`}
             >
                 <div className="div">

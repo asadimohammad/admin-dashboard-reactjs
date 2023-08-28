@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import avatar from "#assets/images/avatar.svg";
 import {
     Link,
+    redirect,
     useActionData,
     useNavigate,
     useNavigation,
@@ -35,13 +36,13 @@ const Login = () => {
 
     const errorRouter = useRouteError();
 
-    useEffect(() => {
-        if (actionData) {
-            setTimeout(() => {
-                navigate("/");
-            }, 3000);
-        }
-    });
+    // useEffect(() => {
+    //     if (actionData) {
+    //         setTimeout(() => {
+    //             navigate("/");
+    //         }, 3000);
+    //     }
+    // });
 
     const { t } = useTranslation();
 
@@ -108,7 +109,7 @@ const Login = () => {
             )}
             {errorRouter && (
                 <div>
-                    {errorRouter.response?.data.map((error) => (
+                    {errorRouter.response?.map((error) => (
                         <p className="alert alert-danger text-danger my-6 p-3">
                             {error.description}
                         </p>
@@ -127,6 +128,9 @@ export default Login;
 export const actionLogin = async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
-    await axios.post("https://dummyjson.com/auth/login" , data)
-    .then(response => console.log(response))
+    let response = await httpRequsts.post("auth/login" , data)
+    if(response.status === 200 ) {
+        localStorage.setItem('token' , response?.data.token)
+        return redirect('/')
+    }
 };

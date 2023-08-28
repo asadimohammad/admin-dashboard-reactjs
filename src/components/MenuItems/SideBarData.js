@@ -17,12 +17,12 @@ export const SidebarData = () => {
         // مدیریت کاربران
         {
             title: t('dash.sidebar.stuMng'),
-            path: "/sudentsList",
+            path: "/students",
             icon: <PiIcons.PiStudentDuotone />,
         },
         {
             title: t('dash.sidebar.stafMng'),
-            path: "/stafList",
+            path: "/teachers",
             icon: <FaIcons.FaChalkboardTeacher />,
         },
         {
@@ -34,7 +34,7 @@ export const SidebarData = () => {
         //   مدیریت دوره ها
         {
             title: t('dash.sidebar.coursesList'),
-            path: "/courses",
+            path: "/products",
             icon: <MdIcons.MdOutlineLibraryBooks />,
         },
         {

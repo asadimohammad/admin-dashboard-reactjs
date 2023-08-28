@@ -20,7 +20,7 @@ const SidebarNavLink = styled(NavLink)`
         cursor: pointer;
     }
     &.active {
-        background: #454ab2;
+        background: var(--third-teal);
     }
 `;
 const SidebarLink = styled.div`
@@ -42,7 +42,7 @@ const SidebarLink = styled.div`
 `;
 
 const SidebarLabel = styled.span`
-    margin-right: 16px;
+    margin: 0 16px ;
 `;
 
 const DropdownLink = styled(NavLink)`
@@ -79,10 +79,10 @@ const SubMenu = ({ item }) => {
     return (
         <>
             {!item.subNav ? (
-                <SidebarNavLink to={item.path} onClick={item.subNav && showSubnav}>
+                <SidebarNavLink to={item.path} state={{title : item.title}} onClick={item.subNav && showSubnav}>
                     <div>
                         {item.icon}
-                        <SidebarLabel ref={refNav}>{item.title}</SidebarLabel>
+                        <SidebarLabel ref={refNav} >{item.title}</SidebarLabel>
                     </div>
                     <div>
                         {item.subNav && subnav

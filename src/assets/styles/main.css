@@ -33,14 +33,28 @@
     --first-teal: #1a5f7a;
     --second-teal: #159895;
     --third-teal: #57c5b6;
-    --transition: .5s ease;
-    --dark-mode : #111a23;
+    --white-color: #ffffff;
+    --gray-color: #c5c5c5;
+    --transition: 0.5s ease;
+    --dark-mode: #111a23;
 }
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "vazir";
+}
+
+body::-webkit-scrollbar {
+    width: 11px;
+}
+body::-webkit-scrollbar-track {
+    background: var(--second-teal);
+}
+body::-webkit-scrollbar-thumb {
+    background-color: var(--white-color);
+    border-radius: 6px;
+    border: 3px solid var(--second-teal);
 }
 
 body::before {
@@ -107,6 +121,9 @@ a {
 }
 .align-end {
     align-items: flex-end;
+}
+.flex-wrap {
+    flex-wrap: wrap;
 }
 .gap-1 {
     gap: 5px;

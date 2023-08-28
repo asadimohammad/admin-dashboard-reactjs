@@ -1,88 +1,218 @@
-
-.main-layout .main{
-    width: 100vw;
-}
-
-
-.main > footer.footer{
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    border-top: 1px solid var(--first-teal);
-}
-.main > .footer p{
-    color: #989898;
-}
-.main > .footer span{
-    color: var(--third-teal);
-}
-
 /* Sidebar Navigation */
 
-.main-layout .sidebar{
-    width: 20vw;
+.main-layout .sidebar {
+    width: 20%;
     min-height: 100vh;
-    background-color: #28286c;
-    transition: all .3s;
+    background-color: var(--main-color);
+    transition: all 0.3s;
     padding: 1rem 0;
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
 }
-.main-layout .sidebar.collapsed{
-    width: 50px;
-    transition: all .3s;
+
+.main-layout .sidebar::-webkit-scrollbar {
+    width: 10px;
+  }
+  .main-layout .sidebar::-webkit-scrollbar-track {
+    background: var(--second-teal);
+  }
+  .main-layout .sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--white-color) ;
+    border-radius: 8px;
+    border: 3px solid var(--second-teal);
+  }
+
+.main-layout .sidebar.collapsed {
+    width: 66px;
+    transition: all 0.3s;
 }
-body.dark .main-layout .navbar .sidebar-toogle{
-    color: var( --third-teal);
+body.dark .main-layout .navbar .sidebar-toogle {
+    color: var(--third-teal);
 }
-body.dark .main-layout .navbar .sidebar-toogle:hover{
+body.dark .main-layout .navbar .sidebar-toogle:hover {
     color: #ffffffd5;
 }
-.main-layout .navbar .sidebar-toogle{
+.main-layout .navbar .sidebar-toogle {
     font-size: 1.5rem;
     color: var(--first-teal);
     cursor: pointer;
 }
-.main-layout .navbar .sidebar-toogle:hover{
+.main-layout .navbar .sidebar-toogle:hover {
     color: #000000d5;
 }
 
-.sidebar .sidebar-logo{
+.sidebar .sidebar-logo {
     width: 100%;
     color: #fff;
     margin-bottom: 2rem;
     border-bottom: 1px solid #eeeeee;
     padding-bottom: 10px;
 }
-.sidebar .sidebar-logo img{
+.sidebar .sidebar-logo img {
     width: 90px;
     padding: 5px;
     border-radius: 50%;
     background-color: #fff;
 }
-.sidebar .sidebar-nav{
+.sidebar .sidebar-nav {
     color: #eeeeee;
 }
-.sidebar-nav .sub_nav_level_one{
+.sidebar-nav .sub_nav_level_one {
 }
-.sidebar-nav .sub_nav_level_one  li{
+.sidebar-nav .sub_nav_level_one li {
     padding: 5px 20px;
 }
-.sidebar-nav .sub_nav_level_one > li a{
+.sidebar-nav .sub_nav_level_one > li a {
     color: #dadae7;
 }
-.sidebar.collapsed > nav a span ,
-.sidebar.collapsed > nav > div span{
+.sidebar.collapsed > nav a span,
+.sidebar.collapsed > nav > div span {
     display: none;
 }
-.sidebar.collapsed > nav > div > a ,
-.sidebar.collapsed > nav > div > div{
-    width : fit-content;
+.sidebar.collapsed > nav > div > a,
+.sidebar.collapsed > nav > div > div {
+    width: fit-content;
     padding: 15px;
 }
-.sidebar.collapsed .sidebar-logo img{
+.sidebar.collapsed .sidebar-logo img {
     width: 44px;
     background: #fefefe;
     border-radius: 50%;
 }
-.sidebar.collapsed .sidebar-logo h3{
+.sidebar.collapsed .sidebar-logo h3 {
     display: none;
+}
+
+/* main content */
+
+.main-layout .main {
+    position: absolute;
+    transition: all .8s;
+    left: 0;
+}
+html[dir='ltr'] .main{
+    right: 0;
+    left: auto;
+}
+.main-extended{
+    width: 79%;
+}
+.main-collapsed {
+    width: 94vw;
+}
+.main > footer.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid var(--first-teal);
+    z-index: 10;
+    background-color: #fff;
+}
+.main > .footer p {
+    color: #989898;
+}
+.main > .footer span {
+    color: var(--third-teal);
+}
+
+
+/* ************************************ Courses */
+.courses {
+}
+.courses .top-content {
+}
+.courses .top-content .btn-add button {
+    background-color: var(--second-teal);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.courses .course-content .course-list {
+}
+.courses .course-content .course-list .course {
+    /* flex: 1 1 0; */
+    width: 20%;
+    height: 425px;
+    background-color: var(--main-color);
+    color: var(--white-color);
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.course .course_img {
+    text-align: center;
+    height: 35%;
+}
+.course .course_img img {
+    height: 100%;
+    border-radius: 10px 10px 0 0;
+}
+.course .course_content {
+    height: 65%;
+}
+.course .course_content .category {
+    background-color: var(--third-teal);
+    border-radius: 5px;
+    width: fit-content;
+}
+.course .course_content .title {
+    color: var(--white-color);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.course .course_content .description {
+    text-align: justify;
+    color: var(--gray-color);
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+.course .course_content .rating {
+    color: var(--third-teal);
+}
+
+
+/* ************************************ Students */
+
+.students{
+
+}
+.students .student-list{
+
+}
+.students .student-list .student{
+
+}
+.student-list table{
+    width: 100%;
+    text-align: center;
+    background-color: var(--main-color);
+    color: var(--white-color);
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+.student-list table tr , 
+.student-list table th{
+    height: 50px;
+}
+.student-list table th{
+    background-color: var(--second-teal);
+}
+.student-list table tr:nth-child(2n){
+    background-color: var(--first-teal);
+}
+.student-list table tr:hover{
+    background-color: var(--third-teal);
+}
+.student-list table td.action{
+    margin-top: 15px;
+}
+.student-list table td.action svg{
+   cursor: pointer;
 }
