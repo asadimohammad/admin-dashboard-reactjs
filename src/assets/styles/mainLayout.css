@@ -189,7 +189,10 @@ html[dir='ltr'] .main{
 .students .student-list .student{
 
 }
-.student-list table{
+
+/* ************************************ Table List */
+
+.table-list table{
     width: 100%;
     text-align: center;
     background-color: var(--main-color);
@@ -197,22 +200,47 @@ html[dir='ltr'] .main{
     border-radius: 5px;
     border-collapse: collapse;
 }
-.student-list table tr , 
-.student-list table th{
+.table-list table tr , 
+.table-list table th{
     height: 50px;
 }
-.student-list table th{
+.table-list table th{
     background-color: var(--second-teal);
 }
-.student-list table tr:nth-child(2n){
+.table-list table tr:nth-child(2n){
     background-color: var(--first-teal);
 }
-.student-list table tr:hover{
+.table-list table tr:hover{
     background-color: var(--third-teal);
 }
-.student-list table td.action{
+.table-list table td.action{
     margin-top: 15px;
 }
-.student-list table td.action svg{
+.table-list table td.action svg{
    cursor: pointer;
+}
+
+
+/* ************************************ pagination */
+
+.pagination{
+    background-color: var(--main-color);
+    width: fit-content;
+}
+.pagination li:not(:nth-child(1)){
+    border-right: 1px solid var(--gray-color);
+}
+.pagination li{
+    height: 100%;
+    color: var(--gray-color);
+    text-align: center;
+    padding: 5px 15px;
+    /* margin: 0 10px; */
+    cursor: pointer;
+}
+.pagination li:hover{
+    background-color: var(--second-teal);
+}
+.pagination li:hover a{
+    color: var(--white-color) !important;
 }

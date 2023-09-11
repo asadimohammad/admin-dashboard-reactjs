@@ -1,9 +1,11 @@
+// @ts-nocheck
 import React from "react";
 import Student from "../../components/students/student";
+import Pagination from "../../../components/pagination";
 
-const StudentList = ({ students }) => {
+const StudentList = ({ students : {response , pageSize , totalRecords}}) => {
     return (
-        <div className="student-list">
+        <div className="table-list">
             <table className="p-3">
                 <thead>
                     <th>ID</th>
@@ -15,11 +17,14 @@ const StudentList = ({ students }) => {
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    {students.map((student) => (
+                    {response.map((student) => (
                         <Student key={student.id} {...student} />
                     ))}
                 </tbody>
             </table>
+            <div className="card-footer">
+                <Pagination totalRecords={totalRecords} pageSize={pageSize}/>
+            </div>
         </div>
     );
 };

@@ -7,7 +7,7 @@ import Category from '../views/components/courses/category'
 const CourseCategories = () => {
   const dataCategories = useLoaderData()
   return (
-    <div>
+    <div className='table-list'>
       <Suspense fallback={<h2>در حال دریافت اطلاعات...</h2>}>
         <Await resolve={dataCategories.categories}>
           {
@@ -28,6 +28,7 @@ export const CourseCategoriesLoader = async () => {
 }
 
 const laodedCourseCategories = async () => {
+  
   const response = await httpInterceptedServices.get('products/categories')
   return response.data
 }

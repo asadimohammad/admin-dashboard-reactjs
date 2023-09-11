@@ -1,7 +1,7 @@
 // @ts-nocheck
 import axios from "axios";
 
-const BASE_URL = "https://fakestoreapi.com";
+const BASE_URL = "http://localhost:3000/api";
 
 export const httpRequsts = axios.create({
     baseURL: BASE_URL,
@@ -17,7 +17,7 @@ httpInterceptedServices.interceptors.request.use(
         const token = localStorage.getItem("token");
         if (token) {
             config.headers = {
-                authorization: "Bearer " + token,
+                Authorization: "Bearer " + token,
             };
         }
         return config;
@@ -28,11 +28,11 @@ httpInterceptedServices.interceptors.request.use(
 );
 
 httpInterceptedServices.interceptors.response.use(
-    response => response ,
-    async error => {
-        if(error.response.status === 404) {
-            window.location.href = '/login'
+    (response) => response,
+    async (error) => {
+        if (error.response.status === 404) {
+            window.location.href = "/login";
         }
-        return Promise.reject(error)
+        return Promise.reject(error);
     }
-)
+);

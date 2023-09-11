@@ -21,13 +21,19 @@ const Students = () => {
 
 export default Students
 
-export const studentsLoader = async () => {
+export const studentsLoader = async ({request}) => {
   return defer({
-    students : loadedStudents()
+    students : loadedStudents(request)
   })
 }
 
-const loadedStudents = async () => {
-  const response = await httpInterceptedServices.get('users')
-  return response.data
+const loadedStudents = async (request) => {
+  const page = new URL(request.url).searchParams.get('page') || 1
+  const pageSize = 5
+  const totalRecords = 10
+  let url = 'users'
+  url += `?page=${page}&limit=${pageSize}`
+  let response = await httpInterceptedServices.get(url)
+  response = response.data
+  return {response , pageSize , totalRecords}
 }

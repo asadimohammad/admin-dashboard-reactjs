@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { httpRequsts } from "../../services/http-requests";
+import { httpInterceptedServices, httpRequsts } from "../../services/http-requests";
 import axios from "axios";
 
 const Login = () => {
@@ -51,21 +51,21 @@ const Login = () => {
             <img src={avatar} alt="" />
             <h2 className="title mb-6">{t("login.title")}</h2>
             <div
-                className={`input-div one ${errors.username ? "invalid" : ""}`}
+                className={`input-div one ${errors.email ? "invalid" : ""}`}
             >
                 <div className="div">
                     <input
                         type="text"
-                        {...register("username", {
+                        {...register("email", {
                             required: t("login.errors.required"),
                         })}
                         className="input py-2 px-6"
                     />
-                    <h5>{t("login.mobile")}</h5>
+                    <h5>{t("login.email")}</h5>
                 </div>
-                {errors.username && (
+                {errors.email && (
                     <p className="text-error p-absolute my-2">
-                        {errors.username.message}
+                        {errors.email.message}
                     </p>
                 )}
             </div>
@@ -109,11 +109,9 @@ const Login = () => {
             )}
             {errorRouter && (
                 <div>
-                    {errorRouter.response?.map((error) => (
-                        <p className="alert alert-danger text-danger my-6 p-3">
-                            {error.description}
-                        </p>
-                    ))}
+                    <p className="alert alert-danger text-danger my-6 p-3">
+                        {errorRouter.response.message}
+                    </p>
                 </div>
             )}
             <Link to="/register" className="btn btn-register">
@@ -128,7 +126,8 @@ export default Login;
 export const actionLogin = async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
-    let response = await httpRequsts.post("auth/login" , data)
+    let response = await httpInterceptedServices.post("/login" , data)
+    console.log(response)
     if(response.status === 200 ) {
         localStorage.setItem('token' , response?.data.token)
         return redirect('/')

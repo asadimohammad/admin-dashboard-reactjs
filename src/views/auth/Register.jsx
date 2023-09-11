@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import avatar from "#assets/images/avatar.svg";
 import {
     Link,
@@ -11,7 +11,10 @@ import {
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { httpRequsts } from "../../services/http-requests";
+import {
+    httpInterceptedServices,
+    httpRequsts,
+} from "../../services/http-requests";
 
 const Register = () => {
     const { t } = useTranslation();
@@ -24,7 +27,7 @@ const Register = () => {
 
     const submitForm = useSubmit();
     const onsubmitHandle = (data) => {
-        submitForm(data, { method: "POST" });
+        submitForm(data, { method: "POST"});
     };
 
     const errorRouter = useRouteError();
@@ -48,6 +51,64 @@ const Register = () => {
             <img src={avatar} alt="" />
             <h2 className="title mb-6">{t("register.title")}</h2>
 
+            <div className={`input-div one ${errors.fName ? "invalid" : ""}`}>
+                <div className="div">
+                    <input
+                        type="text"
+                        {...register("fName", {
+                            required: t("register.errors.required"),
+                        })}
+                        className="input py-2 px-6"
+                    />
+                    <h5>{t("register.fName")}</h5>
+                </div>
+                {errors.fName && (
+                    <p className="text-error p-absolute my-2">
+                        {errors.fName.message}
+                    </p>
+                )}
+            </div>
+            <div className={`input-div one ${errors.lName ? "invalid" : ""}`}>
+                <div className="div">
+                    <input
+                        type="text"
+                        {...register("lName", {
+                            required: t("register.errors.required"),
+                        })}
+                        className="input py-2 px-6"
+                    />
+                    <h5>{t("register.lName")}</h5>
+                </div>
+                {errors.lName && (
+                    <p className="text-error p-absolute my-2">
+                        {errors.lName.message}
+                    </p>
+                )}
+            </div>
+            <div className={`input-div one ${errors.email ? "invalid" : ""}`}>
+                <div className="div">
+                    <input
+                        type="text"
+                        {...register("email", {
+                            required: t("register.errors.required"),
+                            validate: {
+                                maxLength: (v) => v.length <= 50,
+                                matchPattern: (v) =>
+                                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+                                        v
+                                    ) || t("register.errors.emailError"),
+                            },
+                        })}
+                        className="input py-2 px-6"
+                    />
+                    <h5>{t("register.email")}</h5>
+                </div>
+                {errors.email && (
+                    <p className="text-error p-absolute my-2">
+                        {errors.email.message}
+                    </p>
+                )}
+            </div>
             <div className={`input-div one ${errors.mobile ? "invalid" : ""}`}>
                 <div className="div">
                     <input
@@ -62,6 +123,42 @@ const Register = () => {
                 {errors.mobile && (
                     <p className="text-error p-absolute my-2">
                         {errors.mobile.message}
+                    </p>
+                )}
+            </div>
+            <div
+                className={`input-div one ${errors.userTitle ? "invalid" : ""}`}
+            >
+                <div className="div">
+                    <input
+                        type="text"
+                        {...register("title", {
+                            required: t("register.errors.required"),
+                        })}
+                        className="input py-2 px-6"
+                    />
+                    <h5>{t("register.userTitle")}</h5>
+                </div>
+                {errors.userTitle && (
+                    <p className="text-error p-absolute my-2">
+                        {errors.userTitle.message}
+                    </p>
+                )}
+            </div>
+            <div className={`input-div one ${errors.skills ? "invalid" : ""}`}>
+                <div className="div">
+                    <input
+                        type="text"
+                        {...register("skills", {
+                            required: t("register.errors.required"),
+                        })}
+                        className="input py-2 px-6"
+                    />
+                    <h5>{t("register.skills")}</h5>
+                </div>
+                {errors.skills && (
+                    <p className="text-error p-absolute my-2">
+                        {errors.skills.message}
                     </p>
                 )}
             </div>
@@ -91,30 +188,23 @@ const Register = () => {
             </div>
 
             <div
-                className={`input-div confirmPassword ${
-                    errors.mobile ? "invalid" : ""
+                className={`input-div one mt-2 ${
+                    errors.image ? "invalid" : ""
                 }`}
             >
-                <div className="div">
+                <div className="div mt-3">
                     <input
-                        {...register("confirmPassword", {
+                        type="text"
+                        {...register("image", {
                             required: t("register.errors.required"),
-                            validate: (value) => {
-                                if (watch("password") !== value) {
-                                    return t(
-                                        "register.errors.validateConfirmPass"
-                                    );
-                                }
-                            },
                         })}
-                        type="password"
-                        className="input py-2 px-6"
+                        className="input py-2 px-6 "
                     />
-                    <h5>{t("register.confirmPassword")}</h5>
+                    <h5>{t("register.image")}</h5>
                 </div>
-                {errors.confirmPassword && (
+                {errors.image && (
                     <p className="text-error p-absolute my-2">
-                        {errors.confirmPassword?.message}
+                        {errors.image.message}
                     </p>
                 )}
             </div>
@@ -136,11 +226,9 @@ const Register = () => {
             )}
             {errorRouter && (
                 <div>
-                    {errorRouter.response?.data.map((error) => (
-                        <p className="alert alert-danger text-danger my-6 p-3">
-                            {error.description}
-                        </p>
-                    ))}
+                    <p className="alert alert-danger text-danger my-6 p-3">
+                        {errorRouter.response.message}
+                    </p>
                 </div>
             )}
             <Link to="/login" className="btn btn-register">
@@ -155,6 +243,7 @@ export default Register;
 export const actionRegister = async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
-    const response = await httpRequsts.post("/users", data);
+    const response = await httpInterceptedServices.post("/signup", data);
+    console.log(response);
     return response.status === 200;
 };

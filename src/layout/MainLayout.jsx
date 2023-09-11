@@ -77,7 +77,7 @@ const MainLayout = () => {
                         <ChangeTheme />
                     </div>
                 </nav>
-                    {location.state.title}
+                    {location.state?.title}
 
                 <main className="content px-3">
                     <div className="p-3">

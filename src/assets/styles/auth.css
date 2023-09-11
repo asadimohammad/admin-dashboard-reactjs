@@ -62,14 +62,16 @@ body.dark .toggle-bar::before{
 form {
     width: 360px;
 }
+.login-register-content .login{
+    top: 20%;
+}
 .login-register-content .login,
 .login-register-content .register {
     width: 25%;
     position: absolute;
-    top: 20%;
 }
-
 .login-register-content .register {
+    top: 8%;
     opacity: 1;
     transition: all 2s ease-in;
     animation: transformFrmRegister 0.5s ease-in alternate;
